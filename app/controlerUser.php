@@ -246,8 +246,9 @@ function ctlUserRegistro(){
         if(!$error){
             $userdat=array ($_POST['clave'],$_POST['user'],$_POST['correo'],$_POST['plan'],"I");
             modeloUserAdd($userid,$userdat);
+            header("Refresh:0; url=index.php");
+            
         }
-        header("Refresh:0; url=index.php?orden=VerUsuarios");
         
     }
     

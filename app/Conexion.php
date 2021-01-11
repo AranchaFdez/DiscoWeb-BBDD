@@ -20,7 +20,7 @@ class Conexion{
     }
     public function __construct(){
         try{
-            $dns="mysql:host=192.168.1.60;dbname=Usuarios;charset=utf8";
+            $dns="mysql:host=192.168.1.65;dbname=Usuarios;charset=utf8";
             $this->dbh=new PDO($dns, "root","root",);
             $this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }catch (PDOException $e){
@@ -43,15 +43,15 @@ class Conexion{
         if ( $this->stmt_usuarios->execute() ){
             while ( $resut = $this->stmt_usuarios->fetch()){
                 $user=$resut->id;              
-                $datos[$user][]=$resut->pass;
-                $datos[$user][]=$resut->nombre;
-                $datos[$user][]=$resut->correo;
-                $datos[$user][]=$resut->plan;
-                $datos[$user][]=$resut->estado;
+                $tuser[$user][]=$resut->pass;
+                $tuser[$user][]=$resut->nombre;
+                $tuser[$user][]=$resut->correo;
+                $tuser[$user][]=$resut->plan;
+                $tuser[$user][]=$resut->estado;
                 
             }
         }
-        return $datos;
+        return $tuser;
     }
     // Devuelvo un usuario (array) o false
     public function getUsuario (String $login) {
